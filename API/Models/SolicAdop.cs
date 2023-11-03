@@ -13,7 +13,9 @@ namespace API.Models
         public string ?Nome { get; set; }
 
         [Required]
-        public string ?Animal { get; set; }
+        public int AnimalId { get; set; }
+
+        public virtual Animal ?Animal { get; set; }
 
         [Required(ErrorMessage ="O campo Cpf é obrigatório")]
         [StringLength(11, ErrorMessage = "Tamanho máximo para Cpf é de 11 caracteres")]

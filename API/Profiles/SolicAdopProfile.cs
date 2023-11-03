@@ -8,7 +8,8 @@ namespace API.Profiles
     public class SolicAdopProfile : Profile{
         public SolicAdopProfile(){
             CreateMap<CreateSolicAdopDto, SolicAdop>();
-            CreateMap<SolicAdop, ReadSolicAdopDto>();
+            CreateMap<SolicAdop, ReadSolicAdopDto>()
+            .ForMember(solicDto => solicDto.Animal, opt => opt.MapFrom(solic => solic.Animal));
         }
     }
 }

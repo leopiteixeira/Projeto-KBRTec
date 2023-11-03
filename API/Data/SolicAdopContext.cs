@@ -10,6 +10,9 @@ namespace API.Data
         }
 
         public DbSet<SolicAdop> solics { get; set; }
+        public DbSet<Animal> animais { get; set; }
+        public DbSet<Especie> especies { get; set; }
+        public DbSet<Raca> racas { get; set; }
 
     }
 }

@@ -7,7 +7,7 @@ var connectionString = builder.Configuration.GetConnectionString("SolicAdopConne
 
 // Add services to the container.
 
-builder.Services.AddDbContext<SolicAdopContext>(opts => opts.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+builder.Services.AddDbContext<SolicAdopContext>(opts => opts.UseLazyLoadingProxies().UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
