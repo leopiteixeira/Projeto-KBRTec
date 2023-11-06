@@ -1,13 +1,22 @@
 using API.Data;
+using API.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var connectionString = builder.Configuration.GetConnectionString("SolicAdopConnection");
+var SolicConnectionString = builder.Configuration.GetConnectionString("SolicAdopConnection");
+var UsuarioConnectionString = builder.Configuration.GetConnectionString("UsuarioConnection");
 
 // Add services to the container.
 
-builder.Services.AddDbContext<SolicAdopContext>(opts => opts.UseLazyLoadingProxies().UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+builder.Services.AddDbContext<UsuarioContext>(opts => opts.UseMySql(UsuarioConnectionString, ServerVersion.AutoDetect(UsuarioConnectionString)));
+
+builder.Services.AddDbContext<SolicAdopContext>(opts => opts.UseLazyLoadingProxies().UseMySql(SolicConnectionString, ServerVersion.AutoDetect(SolicConnectionString)));
+
+builder.Services.AddIdentity<Usuario, IdentityRole>()
+                .AddEntityFrameworkStores<UsuarioContext>()
+                .AddDefaultTokenProviders();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
